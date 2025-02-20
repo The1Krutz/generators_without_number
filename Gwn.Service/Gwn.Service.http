@@ -1,0 +1,6 @@
+@Gwn.Service_HostAddress = http://localhost:5000
+
+GET {{Gwn.Service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
