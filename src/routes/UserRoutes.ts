@@ -1,12 +1,11 @@
 import { isNumber } from 'jet-validators';
 import { transform } from 'jet-validators/utils';
 
-import HttpStatusCodes from '@src/common/HttpStatusCodes';
-import UserService from '@src/services/UserService';
-import User from '@src/models/User';
+import { HttpStatusCodes } from '@src/common/HttpStatusCodes';
+import { UserService } from '@src/services/UserService';
+import { User } from '@src/models/User';
 
 import { parseReq, IReq, IRes } from './common';
-
 
 /******************************************************************************
                                 Variables
@@ -17,7 +16,6 @@ const Validators = {
   update: parseReq({ user: User.test }),
   delete: parseReq({ id: transform(Number, isNumber) }),
 } as const;
-
 
 /******************************************************************************
                                 Functions
@@ -58,14 +56,13 @@ async function delete_(req: IReq, res: IRes) {
   res.status(HttpStatusCodes.OK).end();
 }
 
-
 /******************************************************************************
                                 Export default
 ******************************************************************************/
 
-export default {
+export const UserRoutes = {
   getAll,
   add,
   update,
   delete: delete_,
-} as const;
+};

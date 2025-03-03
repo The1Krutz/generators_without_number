@@ -1,5 +1,4 @@
-
-export default {
+export const Paths = {
   Base: '/api',
   Users: {
     Base: '/users',
@@ -8,4 +7,4 @@ export default {
     Update: '/update',
     Delete: '/delete/:id',
   },
-} as const;
+};

@@ -8,12 +8,11 @@ import 'express-async-errors';
 
 import BaseRouter from '@src/routes';
 
-import Paths from '@src/common/Paths';
-import ENV from '@src/common/ENV';
-import HttpStatusCodes from '@src/common/HttpStatusCodes';
+import { Paths } from '@src/common/Paths';
+import { ENV } from '@src/common/ENV';
+import { HttpStatusCodes } from '@src/common/HttpStatusCodes';
 import { RouteError } from '@src/common/route-errors';
 import { NodeEnvs } from '@src/common/constants';
-
 
 /******************************************************************************
                                 Setup
@@ -21,12 +20,11 @@ import { NodeEnvs } from '@src/common/constants';
 
 const app = express();
 
-
 // **** Middleware **** //
 
 // Basic middleware
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // Show routes called in console during development
 if (ENV.NodeEnv === NodeEnvs.Dev) {
@@ -54,7 +52,6 @@ app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
   return next(err);
 });
 
-
 // **** FrontEnd Content **** //
 
 // Set views directory (html)
@@ -74,7 +71,6 @@ app.get('/', (_: Request, res: Response) => {
 app.get('/users', (_: Request, res: Response) => {
   return res.sendFile('users.html', { root: viewsDir });
 });
-
 
 /******************************************************************************
                                 Export default

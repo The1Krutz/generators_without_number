@@ -1,6 +1,5 @@
 import { isNumber } from 'jet-validators';
 
-
 /**
  * Database relational key.
  */

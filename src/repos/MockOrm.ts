@@ -1,20 +1,15 @@
 import jsonfile from 'jsonfile';
 
-import ENV from '@src/common/ENV';
+import { ENV } from '@src/common/ENV';
 import { NodeEnvs } from '@src/common/constants';
 import { IUser } from '@src/models/User';
-
 
 /******************************************************************************
                                 Variables
 ******************************************************************************/
 
-const DB_FILE_NAME = (
-  ENV.NodeEnv === NodeEnvs.Test 
-    ? 'database.test.json' 
-    : 'database.json'
-);
-
+const DB_FILE_NAME =
+  ENV.NodeEnv === NodeEnvs.Test ? 'database.test.json' : 'database.json';
 
 /******************************************************************************
                                 Types
@@ -23,7 +18,6 @@ const DB_FILE_NAME = (
 interface IDb {
   users: IUser[];
 }
-
 
 /******************************************************************************
                                 Functions
@@ -40,15 +34,14 @@ function openDb(): Promise<IDb> {
  * Update the file.
  */
 function saveDb(db: IDb): Promise<void> {
-  return jsonfile.writeFile((__dirname + '/' + DB_FILE_NAME), db);
+  return jsonfile.writeFile(__dirname + '/' + DB_FILE_NAME, db);
 }
-
 
 /******************************************************************************
                                 Export default
 ******************************************************************************/
 
-export default {
+export const MockOrm = {
   openDb,
   saveDb,
-} as const;
+};

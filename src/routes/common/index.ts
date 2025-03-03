@@ -4,7 +4,6 @@ import { parseObject, TSchema } from 'jet-validators/utils';
 
 import { ValidationErr } from '@src/common/route-errors';
 
-
 /******************************************************************************
                                 Types
 ******************************************************************************/
@@ -13,12 +12,13 @@ type TRecord = Record<string, unknown>;
 export type IReq = Request<TRecord, void, TRecord, TRecord>;
 export type IRes = Response<unknown, TRecord>;
 
-export type TParseReqErr = {
-  prop: string,
-  value: unknown,
-  moreInfo?: string,
-} | string;
-
+export type TParseReqErr =
+  | {
+      prop: string;
+      value: unknown;
+      moreInfo?: string;
+    }
+  | string;
 
 /******************************************************************************
                                 Functions
@@ -50,11 +50,7 @@ export function parseReq<U extends TSchema>(schema: U) {
  * Setup the error callback function for when "parseReq" fires and error.
  */
 function setupErrorCb(errArr: TParseReqErr[]) {
-  return function (
-    prop = 'undefined',
-    value?: unknown,
-    caughtErr?: unknown,
-  ) {
+  return function (prop = 'undefined', value?: unknown, caughtErr?: unknown) {
     // Initialize err
     let err: TParseReqErr;
     if (arguments.length === 1) {
