@@ -3,10 +3,9 @@ import Jasmine from 'jasmine';
 import logger from 'jet-logger';
 import { argv } from 'process';
 
-
-/******************************************************************************
-                              Run
-******************************************************************************/
+/**
+ * Run
+ */
 
 // Init Jasmine
 const jasmine = new Jasmine();

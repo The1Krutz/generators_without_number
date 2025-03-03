@@ -14,9 +14,9 @@ import { HttpStatusCodes } from '@src/common/HttpStatusCodes';
 import { RouteError } from '@src/common/route-errors';
 import { NodeEnvs } from '@src/common/constants';
 
-/******************************************************************************
-                                Setup
-******************************************************************************/
+/**
+ * Setup
+ */
 
 const app = express();
 
@@ -72,8 +72,7 @@ app.get('/users', (_: Request, res: Response) => {
   return res.sendFile('users.html', { root: viewsDir });
 });
 
-/******************************************************************************
-                                Export default
-******************************************************************************/
-
+/**
+ * Export default
+ */
 export default app;

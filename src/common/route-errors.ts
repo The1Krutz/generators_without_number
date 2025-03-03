@@ -1,8 +1,8 @@
 import { HttpStatusCodes } from '@src/common/HttpStatusCodes';
 
-/******************************************************************************
-                              Classes
-******************************************************************************/
+/**
+ * Classes
+ */
 
 /**
  * Error with status code and message.

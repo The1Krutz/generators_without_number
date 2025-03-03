@@ -3,9 +3,9 @@ import { Router } from 'express';
 import { Paths } from '../common/Paths';
 import { UserRoutes } from './UserRoutes';
 
-/******************************************************************************
-                                Variables
-******************************************************************************/
+/**
+ * Variables
+ */
 
 const apiRouter = Router();
 
@@ -23,8 +23,7 @@ userRouter.delete(Paths.Users.Delete, UserRoutes.delete);
 // Add UserRouter
 apiRouter.use(Paths.Users.Base, userRouter);
 
-/******************************************************************************
-                                Export default
-******************************************************************************/
-
+/**
+ * Export default
+ */
 export default apiRouter;

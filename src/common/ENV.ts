@@ -3,10 +3,9 @@ import { isEnumVal } from 'jet-validators';
 
 import { NodeEnvs } from './constants';
 
-/******************************************************************************
-                                 Setup
-******************************************************************************/
-
+/**
+ * Setup
+ */
 export const ENV = jetEnv({
   NodeEnv: isEnumVal(NodeEnvs),
   Port: num,

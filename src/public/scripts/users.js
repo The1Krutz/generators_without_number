@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-/******************************************************************************
-                                Variables
-******************************************************************************/
+/**
+ * Variables
+ */
 
 const DateFormatter = new Intl.DateTimeFormat('en-US', {
   year: 'numeric',
@@ -12,33 +12,30 @@ const DateFormatter = new Intl.DateTimeFormat('en-US', {
 
 const formatDate = (date) => DateFormatter.format(new Date(date));
 
-
-/******************************************************************************
-                                  Run
-******************************************************************************/
+/**
+ * Run
+ */
 
 // Start
 displayUsers();
 
-
-/******************************************************************************
-                              Functions
-******************************************************************************/
+/**
+ * Functions
+ */
 
 /**
  * Call api
  */
 function displayUsers() {
-  Http
-    .get('/api/users/all')
-    .then(resp => resp.json())
-    .then(resp => {
+  Http.get('/api/users/all')
+    .then((resp) => resp.json())
+    .then((resp) => {
       var allUsersTemplate = document.getElementById('all-users-template'),
         allUsersTemplateHtml = allUsersTemplate.innerHTML,
         template = Handlebars.compile(allUsersTemplateHtml);
       var allUsersAnchor = document.getElementById('all-users-anchor');
       allUsersAnchor.innerHTML = template({
-        users: resp.users.map(user => ({
+        users: resp.users.map((user) => ({
           ...user,
           createdFormatted: formatDate(user.created),
         })),
@@ -47,21 +44,25 @@ function displayUsers() {
 }
 
 // Setup event listener for button click
-document.addEventListener('click', event => {
-  event.preventDefault();
-  var ele = event.target;
-  if (ele.matches('#add-user-btn')) {
-    addUser();
-  } else if (ele.matches('.edit-user-btn')) {
-    showEditView(ele.parentNode.parentNode);
-  } else if (ele.matches('.cancel-edit-btn')) {
-    cancelEdit(ele.parentNode.parentNode);
-  } else if (ele.matches('.submit-edit-btn')) {
-    submitEdit(ele);
-  } else if (ele.matches('.delete-user-btn')) {
-    deleteUser(ele);
-  }
-}, false);
+document.addEventListener(
+  'click',
+  (event) => {
+    event.preventDefault();
+    var ele = event.target;
+    if (ele.matches('#add-user-btn')) {
+      addUser();
+    } else if (ele.matches('.edit-user-btn')) {
+      showEditView(ele.parentNode.parentNode);
+    } else if (ele.matches('.cancel-edit-btn')) {
+      cancelEdit(ele.parentNode.parentNode);
+    } else if (ele.matches('.submit-edit-btn')) {
+      submitEdit(ele);
+    } else if (ele.matches('.delete-user-btn')) {
+      deleteUser(ele);
+    }
+  },
+  false
+);
 
 /**
  * Add a new user.
@@ -78,13 +79,11 @@ function addUser() {
     },
   };
   // Call api
-  Http
-    .post('/api/users/add', data)
-    .then(() => {
-      nameInput.value = '';
-      emailInput.value = '';
-      displayUsers();
-    });
+  Http.post('/api/users/add', data).then(() => {
+    nameInput.value = '';
+    emailInput.value = '';
+    displayUsers();
+  });
 }
 
 /**
@@ -116,7 +115,7 @@ function submitEdit(ele) {
   var emailInput = userEle.getElementsByClassName('email-edit-input')[0];
   var id = ele.getAttribute('data-user-id');
   var created = ele.getAttribute('data-user-created');
-    console.log(ele, created)
+  console.log(ele, created);
   var data = {
     user: {
       id: Number(id),
@@ -125,9 +124,7 @@ function submitEdit(ele) {
       created: new Date(created),
     },
   };
-	Http
-    .put('/api/users/update', data)
-    .then(() => displayUsers());
+  Http.put('/api/users/update', data).then(() => displayUsers());
 }
 
 /**
@@ -135,7 +132,5 @@ function submitEdit(ele) {
  */
 function deleteUser(ele) {
   var id = ele.getAttribute('data-user-id');
-	Http
-    .delete('/api/users/delete/' + id)
-    .then(() => displayUsers());
+  Http.delete('/api/users/delete/' + id).then(() => displayUsers());
 }

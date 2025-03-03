@@ -4,24 +4,24 @@ import { ENV } from '@src/common/ENV';
 import { NodeEnvs } from '@src/common/constants';
 import { IUser } from '@src/models/User';
 
-/******************************************************************************
-                                Variables
-******************************************************************************/
+/**
+ * Variables
+ */
 
 const DB_FILE_NAME =
   ENV.NodeEnv === NodeEnvs.Test ? 'database.test.json' : 'database.json';
 
-/******************************************************************************
-                                Types
-******************************************************************************/
+/**
+ * Types
+ */
 
 interface IDb {
   users: IUser[];
 }
 
-/******************************************************************************
-                                Functions
-******************************************************************************/
+/**
+ * Functions
+ */
 
 /**
  * Fetch the json from the file.
@@ -37,9 +37,9 @@ function saveDb(db: IDb): Promise<void> {
   return jsonfile.writeFile(__dirname + '/' + DB_FILE_NAME, db);
 }
 
-/******************************************************************************
-                                Export default
-******************************************************************************/
+/**
+ * Export default
+ */
 
 export const MockOrm = {
   openDb,

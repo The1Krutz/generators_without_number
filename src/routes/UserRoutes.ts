@@ -7,9 +7,9 @@ import { User } from '@src/models/User';
 
 import { parseReq, IReq, IRes } from './common';
 
-/******************************************************************************
-                                Variables
-******************************************************************************/
+/**
+ * Variables
+ */
 
 const Validators = {
   add: parseReq({ user: User.test }),
@@ -17,9 +17,9 @@ const Validators = {
   delete: parseReq({ id: transform(Number, isNumber) }),
 } as const;
 
-/******************************************************************************
-                                Functions
-******************************************************************************/
+/**
+ * Functions
+ */
 
 /**
  * Get all users.
@@ -56,9 +56,9 @@ async function delete_(req: IReq, res: IRes) {
   res.status(HttpStatusCodes.OK).end();
 }
 
-/******************************************************************************
-                                Export default
-******************************************************************************/
+/**
+ * Export default
+ */
 
 export const UserRoutes = {
   getAll,

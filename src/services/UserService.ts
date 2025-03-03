@@ -4,15 +4,15 @@ import { HttpStatusCodes } from '@src/common/HttpStatusCodes';
 import { UserRepo } from '@src/repos/UserRepo';
 import { IUser } from '@src/models/User';
 
-/******************************************************************************
-                                Variables
-******************************************************************************/
+/**
+ * Variables
+ */
 
 export const USER_NOT_FOUND_ERR = 'User not found';
 
-/******************************************************************************
-                                Functions
-******************************************************************************/
+/**
+ * Functions
+ */
 
 /**
  * Get all users.
@@ -52,9 +52,9 @@ async function _delete(id: number): Promise<void> {
   return UserRepo.delete(id);
 }
 
-/******************************************************************************
-                                Export default
-******************************************************************************/
+/**
+ * Export default
+ */
 
 export const UserService = {
   getAll,

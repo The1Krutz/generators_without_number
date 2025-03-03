@@ -4,9 +4,9 @@ import { parseObject, TSchema } from 'jet-validators/utils';
 
 import { ValidationErr } from '@src/common/route-errors';
 
-/******************************************************************************
-                                Types
-******************************************************************************/
+/**
+ * Types
+ */
 
 type TRecord = Record<string, unknown>;
 export type IReq = Request<TRecord, void, TRecord, TRecord>;
@@ -20,9 +20,9 @@ export type TParseReqErr =
     }
   | string;
 
-/******************************************************************************
-                                Functions
-******************************************************************************/
+/**
+ * Functions
+ */
 
 /**
  * Parse a Request object property and throw a Validation error if it fails.

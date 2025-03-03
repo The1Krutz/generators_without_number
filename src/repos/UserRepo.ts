@@ -3,9 +3,9 @@ import { getRandomInt } from '@src/util/misc';
 
 import { MockOrm } from './MockOrm';
 
-/******************************************************************************
-                                Functions
-******************************************************************************/
+/**
+ * Functions
+ */
 
 /**
  * Get one user.
@@ -109,10 +109,9 @@ async function insertMult(users: IUser[] | readonly IUser[]): Promise<IUser[]> {
   return usersF;
 }
 
-/******************************************************************************
-                                Export default
-******************************************************************************/
-
+/**
+ * Export default
+ */
 export const UserRepo = {
   getOne,
   persists,
