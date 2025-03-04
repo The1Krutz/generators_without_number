@@ -52,10 +52,6 @@ async function _delete(id: number): Promise<void> {
   return UserRepo.delete(id);
 }
 
-/**
- * Export default
- */
-
 export const UserService = {
   getAll,
   addOne,

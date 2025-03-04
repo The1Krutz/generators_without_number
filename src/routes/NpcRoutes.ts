@@ -2,18 +2,18 @@ import { isNumber } from 'jet-validators';
 import { transform } from 'jet-validators/utils';
 
 import { HttpStatusCodes } from '@src/common/HttpStatusCodes';
-import { UserService } from '@src/services/UserService';
-import { User } from '@src/models/User';
 
 import { parseReq, IReq, IRes } from './common';
+import { npcService } from '@src/services/NpcService';
+import { Npc } from '@src/models/Npc';
 
 /**
  * Variables
  */
 
 const Validators = {
-  add: parseReq({ user: User.test }),
-  update: parseReq({ user: User.test }),
+  add: parseReq({ npc: Npc.test }),
+  update: parseReq({ npc: Npc.test }),
   delete: parseReq({ id: transform(Number, isNumber) }),
 } as const;
 
@@ -22,41 +22,41 @@ const Validators = {
  */
 
 /**
- * Get all users.
+ * Get all npcs.
  */
 async function getAll(_: IReq, res: IRes) {
-  const users = await UserService.getAll();
-  res.status(HttpStatusCodes.OK).json({ users });
+  const npcs = await npcService.getAll();
+  res.status(HttpStatusCodes.OK).json({ npcs });
 }
 
 /**
- * Add one user.
+ * Add one npc.
  */
 async function add(req: IReq, res: IRes) {
-  const { user } = Validators.add(req.body);
-  await UserService.addOne(user);
+  const { npc } = Validators.add(req.body);
+  await npcService.addOne(npc);
   res.status(HttpStatusCodes.CREATED).end();
 }
 
 /**
- * Update one user.
+ * Update one npc.
  */
 async function update(req: IReq, res: IRes) {
-  const { user } = Validators.update(req.body);
-  await UserService.updateOne(user);
+  const { npc } = Validators.update(req.body);
+  await npcService.updateOne(npc);
   res.status(HttpStatusCodes.OK).end();
 }
 
 /**
- * Delete one user.
+ * Delete one npc.
  */
 async function delete_(req: IReq, res: IRes) {
   const { id } = Validators.delete(req.params);
-  await UserService.delete(id);
+  await npcService.delete(id);
   res.status(HttpStatusCodes.OK).end();
 }
 
-export const UserRoutes = {
+export const NpcRoutes = {
   getAll,
   add,
   update,

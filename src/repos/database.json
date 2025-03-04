@@ -24,5 +24,14 @@
       "email": "tomato@boop.beep",
       "created": "2025-03-03T20:32:29.414Z"
     }
+  ],
+  "npcs": [
+    {
+      "id": 173027133491,
+      "created": "2025-03-03T20:32:29.414Z",
+      "system": 2,
+      "name": "Bopp Bipp",
+      "strength": 9
+    }
   ]
 }

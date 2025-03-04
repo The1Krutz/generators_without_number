@@ -27,7 +27,7 @@ displayUsers();
  * Call api
  */
 function displayUsers() {
-  Http.get('/api/users/all')
+  Http.get('/api/user/all')
     .then((resp) => resp.json())
     .then((resp) => {
       var allUsersTemplate = document.getElementById('all-users-template'),
@@ -79,7 +79,7 @@ function addUser() {
     },
   };
   // Call api
-  Http.post('/api/users/add', data).then(() => {
+  Http.post('/api/user/add', data).then(() => {
     nameInput.value = '';
     emailInput.value = '';
     displayUsers();
@@ -124,7 +124,7 @@ function submitEdit(ele) {
       created: new Date(created),
     },
   };
-  Http.put('/api/users/update', data).then(() => displayUsers());
+  Http.put('/api/user/update', data).then(() => displayUsers());
 }
 
 /**
@@ -132,5 +132,5 @@ function submitEdit(ele) {
  */
 function deleteUser(ele) {
   var id = ele.getAttribute('data-user-id');
-  Http.delete('/api/users/delete/' + id).then(() => displayUsers());
+  Http.delete('/api/user/delete/' + id).then(() => displayUsers());
 }

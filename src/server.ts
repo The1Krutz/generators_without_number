@@ -52,24 +52,32 @@ app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
   return next(err);
 });
 
-// **** FrontEnd Content **** //
+/**
+ * Frontend Content
+ */
 
 // Set views directory (html)
-const viewsDir = path.join(__dirname, 'views');
+const viewsDir = path.join(__dirname, 'public', 'views');
 app.set('views', viewsDir);
 
 // Set static directory (js and css).
-const staticDir = path.join(__dirname, 'public');
-app.use(express.static(staticDir));
+const staticDir1 = path.join(__dirname, 'public', 'stylesheets');
+app.use(express.static(staticDir1));
+const staticDir2 = path.join(__dirname, 'public', 'scripts');
+app.use(express.static(staticDir2));
 
-// Nav to users pg by default
+/**
+ * view pages by url
+ * TODO - replace all of this with a SPA
+ */
 app.get('/', (_: Request, res: Response) => {
-  return res.redirect('/users');
+  return res.sendFile('index.html', { root: viewsDir });
 });
-
-// Redirect to login if not logged in.
 app.get('/users', (_: Request, res: Response) => {
   return res.sendFile('users.html', { root: viewsDir });
+});
+app.get('/npcs', (_: Request, res: Response) => {
+  return res.sendFile('npcs.html', { root: viewsDir });
 });
 
 /**

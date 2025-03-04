@@ -1,7 +1,7 @@
 import { IUser } from '@src/models/User';
 import { getRandomInt } from '@src/util/misc';
 
-import { MockOrm } from './MockOrm';
+import { JsonOrm } from './JsonOrm';
 
 /**
  * Functions
@@ -11,7 +11,7 @@ import { MockOrm } from './MockOrm';
  * Get one user.
  */
 async function getOne(email: string): Promise<IUser | null> {
-  const db = await MockOrm.openDb();
+  const db = await JsonOrm.openDb();
   for (const user of db.users) {
     if (user.email === email) {
       return user;
@@ -24,7 +24,7 @@ async function getOne(email: string): Promise<IUser | null> {
  * See if a user with the given id exists.
  */
 async function persists(id: number): Promise<boolean> {
-  const db = await MockOrm.openDb();
+  const db = await JsonOrm.openDb();
   for (const user of db.users) {
     if (user.id === id) {
       return true;
@@ -37,7 +37,7 @@ async function persists(id: number): Promise<boolean> {
  * Get all users.
  */
 async function getAll(): Promise<IUser[]> {
-  const db = await MockOrm.openDb();
+  const db = await JsonOrm.openDb();
   return db.users;
 }
 
@@ -45,17 +45,17 @@ async function getAll(): Promise<IUser[]> {
  * Add one user.
  */
 async function add(user: IUser): Promise<void> {
-  const db = await MockOrm.openDb();
+  const db = await JsonOrm.openDb();
   user.id = getRandomInt();
   db.users.push(user);
-  return MockOrm.saveDb(db);
+  return JsonOrm.saveDb(db);
 }
 
 /**
  * Update a user.
  */
 async function update(user: IUser): Promise<void> {
-  const db = await MockOrm.openDb();
+  const db = await JsonOrm.openDb();
   for (let i = 0; i < db.users.length; i++) {
     if (db.users[i].id === user.id) {
       const dbUser = db.users[i];
@@ -64,7 +64,7 @@ async function update(user: IUser): Promise<void> {
         name: user.name,
         email: user.email,
       };
-      return MockOrm.saveDb(db);
+      return JsonOrm.saveDb(db);
     }
   }
 }
@@ -73,11 +73,11 @@ async function update(user: IUser): Promise<void> {
  * Delete one user.
  */
 async function delete_(id: number): Promise<void> {
-  const db = await MockOrm.openDb();
+  const db = await JsonOrm.openDb();
   for (let i = 0; i < db.users.length; i++) {
     if (db.users[i].id === id) {
       db.users.splice(i, 1);
-      return MockOrm.saveDb(db);
+      return JsonOrm.saveDb(db);
     }
   }
 }
@@ -88,9 +88,9 @@ async function delete_(id: number): Promise<void> {
  * Delete every user record.
  */
 async function deleteAllUsers(): Promise<void> {
-  const db = await MockOrm.openDb();
+  const db = await JsonOrm.openDb();
   db.users = [];
-  return MockOrm.saveDb(db);
+  return JsonOrm.saveDb(db);
 }
 
 /**
@@ -98,20 +98,17 @@ async function deleteAllUsers(): Promise<void> {
  * for nmow.
  */
 async function insertMult(users: IUser[] | readonly IUser[]): Promise<IUser[]> {
-  const db = await MockOrm.openDb(),
+  const db = await JsonOrm.openDb(),
     usersF = [...users];
   for (const user of usersF) {
     user.id = getRandomInt();
     user.created = new Date();
   }
   db.users = [...db.users, ...users];
-  await MockOrm.saveDb(db);
+  await JsonOrm.saveDb(db);
   return usersF;
 }
 
-/**
- * Export default
- */
 export const UserRepo = {
   getOne,
   persists,

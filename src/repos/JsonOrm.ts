@@ -3,6 +3,7 @@ import jsonfile from 'jsonfile';
 import { ENV } from '@src/common/ENV';
 import { NodeEnvs } from '@src/common/constants';
 import { IUser } from '@src/models/User';
+import { INpc } from '@src/models/Npc';
 
 /**
  * Variables
@@ -17,6 +18,7 @@ const DB_FILE_NAME =
 
 interface IDb {
   users: IUser[];
+  npcs:INpc[];
 }
 
 /**
@@ -37,11 +39,7 @@ function saveDb(db: IDb): Promise<void> {
   return jsonfile.writeFile(__dirname + '/' + DB_FILE_NAME, db);
 }
 
-/**
- * Export default
- */
-
-export const MockOrm = {
+export const JsonOrm = {
   openDb,
   saveDb,
 };
