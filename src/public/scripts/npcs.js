@@ -51,6 +51,8 @@ document.addEventListener(
     var ele = event.target;
     if (ele.matches('#add-user-btn')) {
       addUser();
+    } else if (ele.matches('#add-random-btn')) {
+      addRandom();
     } else if (ele.matches('.edit-user-btn')) {
       showEditView(ele.parentNode.parentNode);
     } else if (ele.matches('.cancel-edit-btn')) {
@@ -74,12 +76,28 @@ function addUser() {
     user: {
       id: -1,
       name: nameInput.value,
-      email: emailInput.value,
-      created: new Date(), // TODO - move this into the backend alongside the id assignment
+      created: new Date(),
     },
   };
   // Call api
   Http.post('/api/npc/add', data).then(() => {
+    nameInput.value = '';
+    emailInput.value = '';
+    displayUsers();
+  });
+}
+
+function addRandom() {
+  var nameInput = document.getElementById('name-input');
+  var data = {
+    user: {
+      id: -1,
+      name: nameInput.value,
+      created: new Date(),
+    },
+  };
+  // Call api
+  Http.post('/api/npc/addRandom', data).then(() => {
     nameInput.value = '';
     emailInput.value = '';
     displayUsers();

@@ -7,4 +7,8 @@ export enum WnSystem {
 
 export enum TraitType {
   NpcStrength,
+  NpcVirtue,
+  NpcFlaw,
+  NpcProblem,
+  NpcDesire
 }

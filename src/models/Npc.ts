@@ -1,4 +1,4 @@
-import { isEnum, isEnumVal, isNumber, isString } from 'jet-validators';
+import { isNumber, isString } from 'jet-validators';
 
 import schema from '@src/models/schema/schema';
 import { isRelationalKey, isWnSystemEnumVal } from '@src/models/schema/validators';
@@ -13,7 +13,12 @@ export interface INpc {
   created: Date;
   system: WnSystem;
   name: string;
-  strength: number; // db id so we can fetch it more directly
+  // using db id so we can fetch these more directly
+  strength: number;
+  virtue: number;
+  flaw: number;
+  problem: number;
+  desire: number;
 }
 
 /**
@@ -25,4 +30,8 @@ export const Npc = schema<INpc>({
   system: isWnSystemEnumVal,
   name: isString,
   strength: isNumber,
+  virtue: isNumber,
+  flaw: isNumber,
+  problem: isNumber,
+  desire: isNumber,
 });

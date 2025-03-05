@@ -4,7 +4,8 @@ import { HttpStatusCodes } from '@src/common/HttpStatusCodes';
 import { NpcRepo } from '@src/repos/NpcRepo';
 import { INpc } from '@src/models/Npc';
 import { getRandomInt } from '@src/util/misc';
-import { WnSystem } from '@src/models/enums';
+import { TraitType, WnSystem } from '@src/models/enums';
+import { traitService } from './TraitService';
 
 /**
  * Variables
@@ -33,13 +34,23 @@ function addOne(npc: INpc): Promise<void> {
 /**
  * Add one npc.
  */
-function addRandom(): Promise<void> {
+async function addRandom(): Promise<void> {
+  const strength = await traitService.getRandomByType(TraitType.NpcStrength);
+  const virtue = await traitService.getRandomByType(TraitType.NpcVirtue);
+  const flaw = await traitService.getRandomByType(TraitType.NpcFlaw);
+  const problem = await traitService.getRandomByType(TraitType.NpcProblem);
+  const desire = await traitService.getRandomByType(TraitType.NpcDesire);
+
   const npc: INpc = {
     id: getRandomInt(),
     created: new Date(),
     name: 'random blorgo', // todo - randomize this with actual name stuff
     system: WnSystem.Cities,
-    strength: 3, // todo - randomize this
+    strength: strength.id,
+    virtue: virtue.id,
+    flaw: flaw.id,
+    problem: problem.id,
+    desire: desire.id,
   };
   return NpcRepo.add(npc);
 }
