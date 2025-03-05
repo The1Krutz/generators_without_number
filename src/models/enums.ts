@@ -4,3 +4,7 @@ export enum WnSystem {
   Cities,
   Ashes,
 }
+
+export enum TraitType {
+  NpcStrength,
+}

@@ -1,4 +1,4 @@
-import { WnSystem } from '@src/models/enums';
+import { TraitType, WnSystem } from '@src/models/enums';
 import { isEnumVal, isNumber } from 'jet-validators';
 
 /**
@@ -9,3 +9,4 @@ export function isRelationalKey(arg: unknown): arg is number {
 }
 
 export const isWnSystemEnumVal = isEnumVal(WnSystem);
+export const isWnTraitTypeEnumVal = isEnumVal(TraitType);

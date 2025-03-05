@@ -3,6 +3,8 @@ import { HttpStatusCodes } from '@src/common/HttpStatusCodes';
 
 import { NpcRepo } from '@src/repos/NpcRepo';
 import { INpc } from '@src/models/Npc';
+import { getRandomInt } from '@src/util/misc';
+import { WnSystem } from '@src/models/enums';
 
 /**
  * Variables
@@ -25,6 +27,20 @@ function getAll(): Promise<INpc[]> {
  * Add one npc.
  */
 function addOne(npc: INpc): Promise<void> {
+  return NpcRepo.add(npc);
+}
+
+/**
+ * Add one npc.
+ */
+function addRandom(): Promise<void> {
+  const npc: INpc = {
+    id: getRandomInt(),
+    created: new Date(),
+    name: 'random blorgo', // todo - randomize this with actual name stuff
+    system: WnSystem.Cities,
+    strength: 3, // todo - randomize this
+  };
   return NpcRepo.add(npc);
 }
 
@@ -55,6 +71,7 @@ async function _delete(id: number): Promise<void> {
 export const npcService = {
   getAll,
   addOne,
+  addRandom,
   updateOne,
   delete: _delete,
 };

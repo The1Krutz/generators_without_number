@@ -1,30 +1,4 @@
 {
-  "users": [
-    {
-      "id": 366115170645,
-      "name": "Sean Maxwell",
-      "email": "smaxwell@example.com",
-      "created": "2024-03-22T05:14:36.252Z"
-    },
-    {
-      "id": 310946254456,
-      "name": "John Smith",
-      "email": "john.smith@example.com",
-      "created": "2024-03-22T05:20:55.079Z"
-    },
-    {
-      "id": 143027113460,
-      "name": "Gordan Freeman",
-      "email": "nova@prospect.com",
-      "created": "2024-03-22T05:42:18.895Z"
-    },
-    {
-      "id": 641415152247,
-      "name": "tomato",
-      "email": "tomato@boop.beep",
-      "created": "2025-03-03T20:32:29.414Z"
-    }
-  ],
   "npcs": [
     {
       "id": 173027133491,
@@ -32,6 +6,168 @@
       "system": 2,
       "name": "Bopp Bipp",
       "strength": 9
+    }
+  ],
+  "traits": [
+    {
+      "id": 510382145349,
+      "created": "2025-03-05T03:55:31.025Z",
+      "system": 2,
+      "type": 0,
+      "title": "Charm",
+      "description": "able to persuade other NPCs and people with their winning ways"
+    },
+    {
+      "id": 669601122627,
+      "created": "2025-03-05T03:55:31.026Z",
+      "system": 2,
+      "type": 0,
+      "title": "Cunning",
+      "description": "having plans for any occasion and a backup after that"
+    },
+    {
+      "id": 302304672370,
+      "created": "2025-03-05T03:55:31.027Z",
+      "system": 2,
+      "type": 0,
+      "title": "Debts",
+      "description": "being owed favors by one or more important other people"
+    },
+    {
+      "id": 485309315009,
+      "created": "2025-03-05T03:55:31.027Z",
+      "system": 2,
+      "type": 0,
+      "title": "Deception",
+      "description": "capable of tricking and misleading others easily"
+    },
+    {
+      "id": 266025240192,
+      "created": "2025-03-05T03:55:31.028Z",
+      "system": 2,
+      "type": 0,
+      "title": "Fame",
+      "description": "being known and widely respected in their own social circles"
+    },
+    {
+      "id": 25848775507,
+      "created": "2025-03-05T03:55:31.028Z",
+      "system": 2,
+      "type": 0,
+      "title": "Family",
+      "description": "related to someone of greater importance or influence"
+    },
+    {
+      "id": 274486305542,
+      "created": "2025-03-05T03:55:31.028Z",
+      "system": 2,
+      "type": 0,
+      "title": "Foresight",
+      "description": "able to clearly predict the likely outcomes of current situations"
+    },
+    {
+      "id": 749431013595,
+      "created": "2025-03-05T03:55:31.029Z",
+      "system": 2,
+      "type": 0,
+      "title": "Friendship",
+      "description": "being good friends with someone important or powerful"
+    },
+    {
+      "id": 818388480750,
+      "created": "2025-03-05T03:55:31.029Z",
+      "system": 2,
+      "type": 0,
+      "title": "Gear",
+      "description": "possessed of high-quality cyber, weaponry, drones, or other useful equipment"
+    },
+    {
+      "id": 83183822718,
+      "created": "2025-03-05T03:55:31.029Z",
+      "system": 2,
+      "type": 0,
+      "title": "Inspiration",
+      "description": "able to goad others to pursue a shared goal as if it were their own"
+    },
+    {
+      "id": 384731131940,
+      "created": "2025-03-05T03:55:31.030Z",
+      "system": 2,
+      "type": 0,
+      "title": "Luck",
+      "description": "beyond any ordinary measure to a very noticeable degree"
+    },
+    {
+      "id": 250586177717,
+      "created": "2025-03-05T03:55:31.030Z",
+      "system": 2,
+      "type": 0,
+      "title": "Money",
+      "description": "being unusually wealthy for someone in their position"
+    },
+    {
+      "id": 693925330413,
+      "created": "2025-03-05T03:55:31.030Z",
+      "system": 2,
+      "type": 0,
+      "title": "Prowess",
+      "description": "with their physical form somehow dramatically stronger and tougher than most"
+    },
+    {
+      "id": 378654190070,
+      "created": "2025-03-05T03:55:31.031Z",
+      "system": 2,
+      "type": 0,
+      "title": "Secrets",
+      "description": "privy to blackmail information or valuable knowledge hidden from most"
+    },
+    {
+      "id": 887346887210,
+      "created": "2025-03-05T03:55:31.031Z",
+      "system": 2,
+      "type": 0,
+      "title": "Skills",
+      "description": "possessed of a rare or important skill to an unusual degree"
+    },
+    {
+      "id": 991863428696,
+      "created": "2025-03-05T03:55:31.031Z",
+      "system": 2,
+      "type": 0,
+      "title": "Stealth",
+      "description": "very difficult to locate or follow if they don’t care to be pursued"
+    },
+    {
+      "id": 306513943106,
+      "created": "2025-03-05T03:55:31.032Z",
+      "system": 2,
+      "type": 0,
+      "title": "Ties",
+      "description": "linked professionally to an organization or group that is very dangerous to offend"
+    },
+    {
+      "id": 866920045786,
+      "created": "2025-03-05T03:55:31.032Z",
+      "system": 2,
+      "type": 0,
+      "title": "Violence",
+      "description": "either being personally fearsome or having ties to those who are"
+    },
+    {
+      "id": 23790905977,
+      "created": "2025-03-05T03:55:31.032Z",
+      "system": 2,
+      "type": 0,
+      "title": "Willpower",
+      "description": "driven to obtain their aim with tireless, ferocious determination"
+    },
+    {
+      "id": 909242653864,
+      "created": "2025-03-05T03:55:31.033Z",
+      "system": 2,
+      "type": 0,
+      "title": "Wisdom",
+      "description": "able to discern a practical path to their desires even when all is murky"
     }
   ]
 }

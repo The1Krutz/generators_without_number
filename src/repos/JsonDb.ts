@@ -2,8 +2,8 @@ import jsonfile from 'jsonfile';
 
 import { ENV } from '@src/common/ENV';
 import { NodeEnvs } from '@src/common/constants';
-import { IUser } from '@src/models/User';
 import { INpc } from '@src/models/Npc';
+import { ITrait } from '@src/models/Trait';
 
 /**
  * Variables
@@ -17,8 +17,8 @@ const DB_FILE_NAME =
  */
 
 interface IDb {
-  users: IUser[];
-  npcs:INpc[];
+  npcs: INpc[];
+  traits: ITrait[];
 }
 
 /**
@@ -39,7 +39,7 @@ function saveDb(db: IDb): Promise<void> {
   return jsonfile.writeFile(__dirname + '/' + DB_FILE_NAME, db);
 }
 
-export const JsonOrm = {
+export const JsonDb = {
   openDb,
   saveDb,
 };

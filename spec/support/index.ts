@@ -1,6 +1,6 @@
 import { Response } from 'supertest';
 import { TParseReqErr } from '@src/routes/common';
-import { UserRepo } from '@src/repos/UserRepo';
+import { NpcRepo } from '@src/repos/NpcRepo';
 
 /**
  * Types
@@ -29,5 +29,5 @@ export interface IValidationErr {
  * Delete all records for unit testing.
  */
 export async function cleanDatabase(): Promise<void> {
-  await Promise.all([UserRepo.deleteAllUsers()]);
+  await Promise.all([NpcRepo.deleteAllNpcs()]);
 }

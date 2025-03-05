@@ -1,17 +1,13 @@
 import { getRandomInt } from '@src/util/misc';
 
-import { JsonOrm } from './JsonOrm';
+import { JsonDb } from './JsonDb';
 import { INpc } from '@src/models/Npc';
-
-/**
- * Functions
- */
 
 /**
  * Get one npc.
  */
 async function getOne(id: number): Promise<INpc | null> {
-  const db = await JsonOrm.openDb();
+  const db = await JsonDb.openDb();
   for (const npc of db.npcs) {
     if (npc.id === id) {
       return npc;
@@ -24,7 +20,7 @@ async function getOne(id: number): Promise<INpc | null> {
  * See if an npc with the given id exists.
  */
 async function persists(id: number): Promise<boolean> {
-  const db = await JsonOrm.openDb();
+  const db = await JsonDb.openDb();
   for (const npc of db.npcs) {
     if (npc.id === id) {
       return true;
@@ -37,7 +33,7 @@ async function persists(id: number): Promise<boolean> {
  * Get all npcs.
  */
 async function getAll(): Promise<INpc[]> {
-  const db = await JsonOrm.openDb();
+  const db = await JsonDb.openDb();
   return db.npcs;
 }
 
@@ -45,17 +41,17 @@ async function getAll(): Promise<INpc[]> {
  * Add one npc.
  */
 async function add(npc: INpc): Promise<void> {
-  const db = await JsonOrm.openDb();
+  const db = await JsonDb.openDb();
   npc.id = getRandomInt();
   db.npcs.push(npc);
-  return JsonOrm.saveDb(db);
+  return JsonDb.saveDb(db);
 }
 
 /**
  * Update an npc.
  */
 async function update(npc: INpc): Promise<void> {
-  const db = await JsonOrm.openDb();
+  const db = await JsonDb.openDb();
   for (let i = 0; i < db.npcs.length; i++) {
     if (db.npcs[i].id === npc.id) {
       const dbNpc = db.npcs[i];
@@ -64,7 +60,7 @@ async function update(npc: INpc): Promise<void> {
         name: npc.name,
         strength: npc.strength,
       };
-      return JsonOrm.saveDb(db);
+      return JsonDb.saveDb(db);
     }
   }
 }
@@ -73,11 +69,11 @@ async function update(npc: INpc): Promise<void> {
  * Delete one npc.
  */
 async function delete_(id: number): Promise<void> {
-  const db = await JsonOrm.openDb();
+  const db = await JsonDb.openDb();
   for (let i = 0; i < db.npcs.length; i++) {
     if (db.npcs[i].id === id) {
       db.npcs.splice(i, 1);
-      return JsonOrm.saveDb(db);
+      return JsonDb.saveDb(db);
     }
   }
 }
@@ -88,9 +84,9 @@ async function delete_(id: number): Promise<void> {
  * Delete every npc record.
  */
 async function deleteAllNpcs(): Promise<void> {
-  const db = await JsonOrm.openDb();
+  const db = await JsonDb.openDb();
   db.npcs = [];
-  return JsonOrm.saveDb(db);
+  return JsonDb.saveDb(db);
 }
 
 /**
@@ -98,14 +94,14 @@ async function deleteAllNpcs(): Promise<void> {
  * for now.
  */
 async function insertMult(npcs: INpc[] | readonly INpc[]): Promise<INpc[]> {
-  const db = await JsonOrm.openDb(),
+  const db = await JsonDb.openDb(),
     npcsF = [...npcs];
   for (const npc of npcsF) {
     npc.id = getRandomInt();
     npc.created = new Date();
   }
   db.npcs = [...db.npcs, ...npcs];
-  await JsonOrm.saveDb(db);
+  await JsonDb.saveDb(db);
   return npcsF;
 }
 

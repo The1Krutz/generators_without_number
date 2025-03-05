@@ -27,7 +27,7 @@ displayUsers();
  * Call api
  */
 function displayUsers() {
-  Http.get('/api/user/all')
+  Http.get('/api/npc/all')
     .then((resp) => resp.json())
     .then((resp) => {
       var allUsersTemplate = document.getElementById('all-users-template'),
@@ -35,7 +35,7 @@ function displayUsers() {
         template = Handlebars.compile(allUsersTemplateHtml);
       var allUsersAnchor = document.getElementById('all-users-anchor');
       allUsersAnchor.innerHTML = template({
-        users: resp.users.map((user) => ({
+        users: resp.npcs.map((user) => ({
           ...user,
           createdFormatted: formatDate(user.created),
         })),
@@ -75,11 +75,11 @@ function addUser() {
       id: -1,
       name: nameInput.value,
       email: emailInput.value,
-      created: new Date(),
+      created: new Date(), // TODO - move this into the backend alongside the id assignment
     },
   };
   // Call api
-  Http.post('/api/user/add', data).then(() => {
+  Http.post('/api/npc/add', data).then(() => {
     nameInput.value = '';
     emailInput.value = '';
     displayUsers();
@@ -124,7 +124,7 @@ function submitEdit(ele) {
       created: new Date(created),
     },
   };
-  Http.put('/api/user/update', data).then(() => displayUsers());
+  Http.put('/api/npc/update', data).then(() => displayUsers());
 }
 
 /**
@@ -132,5 +132,5 @@ function submitEdit(ele) {
  */
 function deleteUser(ele) {
   var id = ele.getAttribute('data-user-id');
-  Http.delete('/api/user/delete/' + id).then(() => displayUsers());
+  Http.delete('/api/npc/delete/' + id).then(() => displayUsers());
 }

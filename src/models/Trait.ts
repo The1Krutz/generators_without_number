@@ -1,8 +1,12 @@
 import { isNumber, isOptionalString, isString } from 'jet-validators';
 
-import schema from '@src/util/schema';
-import { isRelationalKey, isWnSystemEnumVal } from '@src/util/validators';
-import { WnSystem } from './enums';
+import schema from '@src/models/schema/schema';
+import {
+  isRelationalKey,
+  isWnSystemEnumVal,
+  isWnTraitTypeEnumVal,
+} from '@src/models/schema/validators';
+import { TraitType, WnSystem } from './enums';
 
 /**
  * Types
@@ -13,8 +17,7 @@ export interface ITrait {
   id: number;
   created: Date;
   system: WnSystem;
-
-  index: number; // d20 number from the tables in the book
+  type: TraitType;
   title?: string;
   description: string;
 }
@@ -26,8 +29,7 @@ export const Trait = schema<ITrait>({
   id: isRelationalKey,
   created: Date,
   system: isWnSystemEnumVal,
-
-  index: isNumber,
+  type: isWnTraitTypeEnumVal,
   title: isOptionalString,
   description: isString,
 });

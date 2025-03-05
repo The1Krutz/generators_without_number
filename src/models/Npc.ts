@@ -1,7 +1,7 @@
 import { isEnum, isEnumVal, isNumber, isString } from 'jet-validators';
 
-import schema from '@src/util/schema';
-import { isRelationalKey, isWnSystemEnumVal } from '@src/util/validators';
+import schema from '@src/models/schema/schema';
+import { isRelationalKey, isWnSystemEnumVal } from '@src/models/schema/validators';
 import { WnSystem } from './enums';
 
 /**
@@ -13,7 +13,7 @@ export interface INpc {
   created: Date;
   system: WnSystem;
   name: string;
-  strength: number; // only the index so we can look it up from the table
+  strength: number; // db id so we can fetch it more directly
 }
 
 /**
